@@ -291,6 +291,7 @@ impl Endpoint for TextToSpeechStream {
     fn url(&self) -> Url {
         let mut url = BASE_URL.parse::<Url>().unwrap();
         url.set_path(&format!("{}/{}{}", TTS_PATH, self.voice_id.0, STREAM_PATH));
+        url.set_query(self.any_query().as_deref());
         url
     }
 }
